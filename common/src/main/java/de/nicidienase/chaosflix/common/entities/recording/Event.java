@@ -45,7 +45,6 @@ public class Event extends SugarRecord implements Parcelable, Comparable<Event> 
 	@SerializedName("conference_url")
 	String conferenceUrl;
 	List<Recording> recordings;
-	Metadata metadata;
 	boolean promoted;
 
 	public boolean isPromoted() {
@@ -89,7 +88,6 @@ public class Event extends SugarRecord implements Parcelable, Comparable<Event> 
 		url = in.readString();
 		conferenceUrl = in.readString();
 		recordings = in.createTypedArrayList(Recording.CREATOR);
-		metadata = in.readParcelable(Metadata.class.getClassLoader());
 	}
 
 	@Override
@@ -114,7 +112,6 @@ public class Event extends SugarRecord implements Parcelable, Comparable<Event> 
 		dest.writeString(url);
 		dest.writeString(conferenceUrl);
 		dest.writeTypedList(recordings);
-		dest.writeParcelable(metadata, flags);
 	}
 
 	@Override
@@ -373,11 +370,4 @@ public class Event extends SugarRecord implements Parcelable, Comparable<Event> 
 		this.updatedAt = updatedAt;
 	}
 
-	public Metadata getMetadata() {
-		return metadata;
-	}
-
-	public void setMetadata(Metadata metadata) {
-		this.metadata = metadata;
-	}
 }
