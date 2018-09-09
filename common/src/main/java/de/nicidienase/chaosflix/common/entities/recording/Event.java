@@ -201,17 +201,14 @@ public class Event extends SugarRecord implements Parcelable, Comparable<Event> 
 //				.into(imageView);
 //	}
 
-	public int getApiID() {
+	public String getApiID() {
 		String[] strings = getUrl().split("/");
-		return Integer.parseInt(strings[strings.length - 1]);
+		return strings[strings.length - 1];
 	}
 
-	public long getConferenceId() {
-		if (conferenceId == 0) {
-			String[] split = conferenceUrl.split("/");
-			conferenceId = Integer.parseInt(split[split.length - 1]);
-		}
-		return conferenceId;
+	public String getConferenceId() {
+		String[] split = conferenceUrl.split("/");
+		return split[split.length - 1];
 	}
 
 	public void setConferenceId(int conferenceId) {
